@@ -1,13 +1,15 @@
 import random
 def get_choices():
-  player_choice = input("Enter a choice (rock, paper,scissors):")
-  options =["rocks","paper","scissors"]
+  player_choice = input("Enter a choice (rock, paper,scissors): ")
+  options =["rock","paper","scissors"]
+  if player_choice not in options:
+     return False
   computer_choice =random.choice(options)
   choices ={"player":player_choice,"computer":computer_choice}  
   return choices
   
 def check_win(player,computer):
-  print(f"You chose {player}, computer chose {computer}")
+  print(f"You choose {player}, computer choose {computer}")
   if player == computer:
     return "It is a tie!"
   elif player=="rock":
@@ -26,5 +28,8 @@ def check_win(player,computer):
     else:
       return "rock smashes scissors! You lose."
 choices = get_choices()
-result=check_win(choices["player"],choices["computer"])
-print(result)
+if not choices:
+  print("Wrong choice!\nTry again later!")
+else:
+  result=check_win(choices["player"],choices["computer"])
+  print(result)
